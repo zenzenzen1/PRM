@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/main"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".activity.MainActivity"
+	>
+	
+	<TextView
+		android:id="@+id/textView"
+		android:layout_width="match_parent"
+		android:layout_height="50dp"
+		android:gravity="center|top"
+		android:text="Main Intent"
+		android:textSize="30sp"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		/>
+	
+	<Button
+		android:id="@+id/button"
+		android:layout_width="200dp"
+		android:layout_height="wrap_content"
+		android:text="Open Second Activity"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/textView"
+		/>
+	
+	<LinearLayout
+		android:id="@+id/linearLayout"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/button"
+		>
+		
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			>
+			
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="10dp"
+				android:text="Enter a: "
+				android:textSize="18sp"
+				
+				/>
+			
+			<EditText
+				android:id="@+id/editTextA"
+				android:layout_width="match_parent"
+				android:layout_height="48dp"
+				android:autofillHints="name"
+				android:hint="Enter a"
+				android:inputType="number"
+				/>
+		
+		</LinearLayout>
+		
+		<LinearLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			>
+			
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginEnd="10dp"
+				android:text="Enter b: "
+				android:textSize="18sp"
+				
+				/>
+			
+			<EditText
+				android:id="@+id/editTextB"
+				android:layout_width="match_parent"
+				android:layout_height="48dp"
+				android:autofillHints="name"
+				android:hint="Enter a"
+				android:inputType="number"
+				/>
+		
+		</LinearLayout>
+		
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:divider="@drawable/custom_edit_text"
+			android:layoutDirection="locale"
+			>
+			
+			<Button
+				android:id="@+id/buttonAdd"
+				android:layout_width="100dp"
+				android:layout_height="wrap_content"
+				android:layout_gravity="center"
+				android:layout_marginEnd="20dp"
+				android:gravity="start|center"
+				android:text="Add"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
+				/>
+			
+			<Button
+				android:id="@+id/button2"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_gravity="end"
+				android:text="Button"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toTopOf="@+id/buttonAdd"
+				/>
+		</androidx.constraintlayout.widget.ConstraintLayout>
+	</LinearLayout>
+	
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+		android:id="@+id/linearLayout2"
+		>
+		
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="Send Data"
+			android:textAlignment="center"
+			android:textSize="20sp"
+			/>
+		
+		<TableLayout
+			android:id="@+id/tableLayout"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:stretchColumns="*"
+			>
+			
+			<TableRow
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				>
+				
+				<TextView
+					android:layout_width="wrap_content"
+					android:layout_height="wrap_content"
+					android:layout_marginStart="10dp"
+					android:text="Enter Data:"
+					android:textSize="20sp"
+					/>
+				
+				<EditText
+					android:id="@+id/editTextData"
+					android:layout_width="match_parent"
+					android:layout_height="48dp"
+					android:autofillHints="name"
+					android:hint="Enter Data"
+					android:inputType="text"
+					/>
+			</TableRow>
+			<TableRow
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				>
+				
+				<TextView
+					android:layout_width="wrap_content"
+					android:text="Result: "
+					android:textColor="#009688"
+					android:textSize="20sp"
+					android:layout_marginStart="10dp"
+					/>
+				
+				<TextView
+					android:id="@+id/textViewResult"
+					android:layout_width="300dp"
+					android:layout_height="wrap_content"
+					android:autofillHints="name"
+					android:textSize="20sp"
+					/>
+			</TableRow>
+		
+		</TableLayout>
+		<Button
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:textSize="20sp"
+			android:text="Request Result"
+			android:layout_gravity="center"
+			android:id="@+id/buttonRequest"
+			/>
+		<androidx.constraintlayout.widget.ConstraintLayout
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="horizontal"
+			>
+			<TextView
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Phone: "
+				android:textSize="20sp"
+				app:layout_constraintStart_toStartOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
+				android:id="@+id/textViewPhone"
+				app:layout_constraintBottom_toBottomOf="parent"
+				/>
+			
+			<EditText
+				android:id="@+id/editTextPhone"
+				android:layout_width="200dp"
+				android:layout_height="48dp"
+				android:autofillHints="name"
+				android:hint="Enter Phone"
+				android:inputType="phone"
+				app:layout_constraintEnd_toStartOf="@+id/buttonCall"
+				app:layout_constraintHorizontal_bias="0.0"
+				app:layout_constraintStart_toEndOf="@+id/textViewPhone"
+				app:layout_constraintTop_toTopOf="parent"
+				/>
+			
+			<Button
+				android:id="@+id/buttonCall"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Call"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
+				/>
+			<Button
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:text="Send SMS"
+				app:layout_constraintEnd_toEndOf="parent"
+				app:layout_constraintTop_toTopOf="parent"
+				app:layout_constraintEnd_toStartOf="@+id/buttonCall"
+				android:id="@+id/buttonSMS"
+				/>
+		</androidx.constraintlayout.widget.ConstraintLayout>
+	</LinearLayout>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+		android:gravity="center"
+		android:id="@+id/linearLayout3"
+		>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Link Website: "
+			android:layout_gravity="center"
+			android:textSize="20sp"
+			/>
+		<EditText
+			android:id="@+id/editTextLink"
+			android:layout_width="200dp"
+			android:layout_height="48dp"
+			android:autofillHints="name"
+			android:hint="Enter Link"
+			android:inputType="text"
+			/>
+		<Button
+			android:id="@+id/buttonLink"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Open Link"
+			/>
+	</LinearLayout>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
+		android:gravity="center|start"
+		android:id="@+id/linearLayout5"
+		>
+		<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="Music"
+			android:textSize="20sp"
+			/>
+		<ImageView
+			android:layout_width="120dp"
+			android:layout_height="match_parent"
+			android:src="@drawable/mymusic"
+			/>
+		<ImageButton
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:src="@drawable/play"
+			android:id="@+id/buttonMusic"
+			android:layout_marginHorizontal="20dp"
+			android:contentDescription="@string/play_music"
+			android:background="@drawable/circle_shape"
+			/>
+		<ImageButton
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:id="@+id/buttonStop"
+			android:src="@drawable/stop"
+			android:background="@drawable/circle_shape"
+			android:contentDescription="@string/stop_music"
+			/>
+	</LinearLayout>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/linearLayout5"
+		android:id="@+id/linearLayout4"
+		>
+		
+		<TextView
+			android:id="@+id/buttonQuestion"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:background="@drawable/fb_question_icon"
+			android:contentDescription="description"
+			android:text="\?"
+			android:textAlignment="gravity"
+			android:textColor="#fff"
+			app:backgroundTint="@null"
+			android:gravity="center_vertical|center_horizontal"
+			/>
+	</LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

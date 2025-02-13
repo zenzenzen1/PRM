@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+	xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/main"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".activity.SecondActivity"
+	android:orientation="vertical"
+	>
+	<TextView
+		android:layout_width="match_parent"
+		android:layout_height="50dp"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toTopOf="parent"
+		android:text="Second Activity"
+		android:textSize="30sp"
+		android:gravity="center|top"
+		android:id="@+id/textView"
+		/>
+	<LinearLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="horizontal"
+		>
+		<TextView
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:text="Result: "
+			android:textSize="20sp"
+			android:gravity="center|top"
+			android:id="@+id/textViewResult"
+			/>
+	</LinearLayout>
+	<Button
+		android:id="@+id/button"
+		android:layout_width="200dp"
+		android:layout_height="wrap_content"
+		android:text="Open Main Activity"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/textView"
+		android:layout_gravity="center"
+		/>
+	
+	<ImageButton
+		android:id="@+id/imageButtonCapture"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		tools:src="@android:drawable/sym_def_app_icon"
+		android:labelFor="@+id/imageButtonCapture"
+		android:contentDescription="@string/image_button"
+		/>
+</LinearLayout>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
