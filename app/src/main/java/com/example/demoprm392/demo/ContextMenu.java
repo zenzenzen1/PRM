@@ -50,7 +50,7 @@ public class ContextMenu extends AppCompatActivity {
 
     @Override
     public boolean onContextItemSelected(@NonNull MenuItem item) {
-        Toast.makeText(this, "" + item.getTitle(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "" + item.getTitle() + " " + item.getOrder(), Toast.LENGTH_SHORT).show();
         return super.onContextItemSelected(item);
     }
 }
