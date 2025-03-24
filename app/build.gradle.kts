@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.carbooking"
+    namespace = "com.example.tourbooking"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.carbooking"
+        applicationId = "com.example.tourbooking"
         minSdk = 27
         targetSdk = 34
         versionCode = 1

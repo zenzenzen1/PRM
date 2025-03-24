@@ -41,12 +41,11 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textview_tourname_detail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/aliey_regular"
                 android:gravity="center"
-                android:text="Tour Name"
+                android:text="Tour Detail"
                 android:textColor="@color/white"
                 android:textSize="40dp"
                 android:transitionName="textnameApp" />
@@ -63,9 +62,39 @@
         android:layout_column="0"
         android:adjustViewBounds="true"
         android:background="@color/grey" />
+    
     <TableLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
+        <TableRow 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+            
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tour Detail"
+                android:transitionName="textnameApp"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginBottom="5dp"
+                />
+            <TextView
+                android:maxLines="5"
+                android:ellipsize="end"
+                android:id="@+id/textview_tourname_detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tour Detail"
+                android:transitionName="textnameApp"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:layout_marginBottom="5dp"
+                />
+        </TableRow>
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -78,7 +107,8 @@
                 android:text="Fee"
                 android:textColor="@color/black"
                 android:textSize="20dp"
-                android:textStyle="bold" />
+                android:textStyle="bold" 
+                />
             <TextView
                 android:id="@+id/textview_Status"
                 android:layout_width="match_parent"
@@ -219,7 +249,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/bgColorSplash"
-        android:text="Back to Home"
+        android:text="Back"
         android:textColor="@color/white"
         android:textStyle="bold" />
 
