@@ -30,11 +30,11 @@ import java.util.List;
 
 public class OrderManagement extends AppCompatActivity {
     private static final int ALL_STATUS_ID = -1;
-    private RecyclerView recyclerView;
+    RecyclerView recyclerView;
     private AdminOrderAdapter orderAdapter;
     private OrderRepository orderRepository;
     List<Order> orderList;
-    private StatusRepository statusRepository;
+    StatusRepository statusRepository;
     StatusAdapter statusAdapter;
     Toolbar toolbar;
     Spinner spinner;

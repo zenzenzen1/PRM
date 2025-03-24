@@ -63,8 +63,8 @@ public class EditUser extends AppCompatActivity {
             inpRole.getEditText().setText(roleView);
         }
         String imageUriString = user.getAvatar();
-        assert imageUriString != null;
-        if (imageUriString.isEmpty()) {
+//        assert imageUriString != null;
+        if (imageUriString == null || imageUriString.isEmpty()) {
             image.setImageResource(R.drawable.ic_user);
         } else {
             image.setImageURI(Uri.parse(imageUriString));

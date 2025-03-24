@@ -52,7 +52,10 @@ public class OrderDetail extends AppCompatActivity {
         
         User user = userRepository.getUserById(userId);
         
-        
+        TextView phone = findViewById(R.id.admin_detail_Phone);
+        TextView email = findViewById(R.id.admin_detail_Email);
+        phone.setText(user.getPhoneNumber());
+        email.setText(user.getEmail());
         TextView tourName = findViewById(R.id.admin_name_detail);
         tourName.setText(tour.getTile());
         tourName.setMaxWidth(500);
