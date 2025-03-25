@@ -16,7 +16,6 @@ public class CategoryRepository {
     public void createCategory(Category category){
         categoryDao.insert(category);
     }
-
     public void updateCategory(Category category){
         categoryDao.update(category);
     }
@@ -24,10 +23,12 @@ public class CategoryRepository {
     public Category getCategory(int categoryId){
         return categoryDao.select(categoryId);
     }
-
+    public List<Category> getAllCategorys() {
+        return categoryDao.getAllCategories(); // Chỉ lấy danh mục active = true
+    }
     public List<Category> getAllCategory(){
         return  categoryDao.selectAll();
     }
 
-    public void deleteById(int categoryId){ categoryDao.delete(categoryId);}
+    public void delete(int categoryId){ categoryDao.delete(categoryId);}
 }

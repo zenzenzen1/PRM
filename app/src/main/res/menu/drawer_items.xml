@@ -21,6 +21,10 @@
             </group>
         </menu>
     </item>
+    <item
+        android:id="@+id/nav_category_management"
+        android:title="Category Management"
+        android:icon="@drawable/ic_category" />
 <item
     android:id="@+id/nav_user_management"
     android:title="User Management"

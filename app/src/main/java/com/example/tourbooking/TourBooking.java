@@ -33,6 +33,7 @@ import com.example.tourbooking.Entity.Order;
 import com.example.tourbooking.Entity.Status;
 import com.example.tourbooking.Entity.Tour;
 import com.example.tourbooking.Entity.User;
+import com.example.tourbooking.helpler.FormatUtils;
 import com.example.tourbooking.payment.zalopay.app_to_app.Api.CreateOrder;
 import com.example.tourbooking.payment.zalopay.app_to_app.Constant.AppInfo;
 import com.example.tourbooking.repository.OrderRepository;
@@ -150,11 +151,11 @@ public class TourBooking extends AppCompatActivity {
 
             tvDescription.setText(tour.getDescription());
 
-            tvPricePerPerson.setText(String.format("%.0f", tour.getPricePerPerson()));
+            tvPricePerPerson.setText(FormatUtils.formatCurrency(tour.getPricePerPerson()));
             tvVoteScore.setText(String.format("%d*", tour.getVoteScore()));
             tvVoteNumber.setText(String.format("(%d)", tour.getVotedNumber()));
 //            tvContactNumber.setText(tourList.getContactNumber());
-            priceTour.setText(String.format("%.0f", basePrice * mCount));
+            priceTour.setText(FormatUtils.formatCurrency(basePrice * mCount));
 
 
             // Example: Glide.with(this).load(firstTour.getImage()).into(imgTour);

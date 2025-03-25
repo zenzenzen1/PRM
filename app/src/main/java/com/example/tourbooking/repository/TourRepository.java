@@ -46,7 +46,10 @@ public class TourRepository {
     public List<Tour> getAllTour() {
         return tourDao.selectAll();
     }
-
+    
+    public List<Tour> getToursByCategoryId(int categoryId) {
+        return tourDao.getToursByCategoryId(categoryId);
+    }
     public boolean updateTourVote(int userId, int tourId, int voteValue) {
         db.runInTransaction(() -> {
             Tour tour = tourDao.select(tourId);

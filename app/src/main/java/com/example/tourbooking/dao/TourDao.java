@@ -14,6 +14,9 @@ public interface TourDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert (Tour tour);
 
+    @Query("SELECT * FROM Tour WHERE categoryId = :categoryId")
+    List<Tour> getToursByCategoryId(int categoryId);
+    
     @Update(onConflict = OnConflictStrategy.REPLACE)
     void update(Tour tour);
 

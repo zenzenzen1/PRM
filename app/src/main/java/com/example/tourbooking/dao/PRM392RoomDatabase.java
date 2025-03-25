@@ -18,7 +18,7 @@ import com.example.tourbooking.Entity.Vehicle;
 import com.example.tourbooking.Entity.Vote;
 
 @Database(entities = {Category.class, Order.class,
-        Role.class, Status.class, Tour.class, User.class, Vehicle.class, Vote.class}, version = 7)
+        Role.class, Status.class, Tour.class, User.class, Vehicle.class, Vote.class}, version = 8)
 @TypeConverters({Converters.class})
 public abstract class PRM392RoomDatabase extends RoomDatabase {
     public static final String DB_NAME = "PRM392Database";
@@ -38,7 +38,7 @@ public abstract class PRM392RoomDatabase extends RoomDatabase {
                 INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                                 PRM392RoomDatabase.class, DB_NAME)
                         .allowMainThreadQueries()
-                        .fallbackToDestructiveMigrationFrom(6)
+                        .fallbackToDestructiveMigrationFrom(7)
                         .enableMultiInstanceInvalidation()
                         .build();
         }

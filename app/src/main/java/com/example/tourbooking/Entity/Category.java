@@ -15,6 +15,8 @@ public class Category {
     @NotNull
     @ColumnInfo(name = "categoryName")
     private String categoryName;
+    @ColumnInfo(name = "active", defaultValue = "1")
+    private boolean active;
 
     public int getId() {
         return id;
@@ -22,6 +24,14 @@ public class Category {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public boolean isActive() {
+        return active;
+    }
+
+    public void setActive(boolean active) {
+        this.active = active;
     }
 
     @NotNull
@@ -38,5 +48,6 @@ public class Category {
 
     public Category(@NotNull String categoryName) {
         this.categoryName = categoryName;
+        this.active = true; // Mặc định là active khi tạo mới
     }
 }
