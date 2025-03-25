@@ -353,7 +353,7 @@ public class TourBooking extends AppCompatActivity {
                     @Override
                     public void onPaymentError(ZaloPayError zaloPayError, String s, String s1) {
                         Log.d("ZaloPay", "onPaymentError: " + zaloPayError + " " + s + "\n" + s1);
-                        Toast.makeText(TourBooking.this, "Something error with zalopay. Please try later.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TourBooking.this, "Something error with zalopay. Please try later, or use other method.", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

@@ -69,7 +69,7 @@ public class Status {
         private final int id;
         private final String statusName;
         
-        public static String GetStatusNameById(int id){
+        public static String getStatusNameById(int id){
             for(StatusEnum se : StatusEnum.values()){
                 if(se.id == id){
                     return se.statusName;

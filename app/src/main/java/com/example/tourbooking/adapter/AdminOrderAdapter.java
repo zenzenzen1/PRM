@@ -9,14 +9,17 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.activity.result.ActivityResultLauncher;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.example.tourbooking.Entity.Status;
 import com.example.tourbooking.R;
 import com.example.tourbooking.Entity.Order;
 import com.example.tourbooking.Entity.Tour;
 import com.example.tourbooking.admin.order.OrderDetail;
+import com.example.tourbooking.helpler.FormatUtils;
 import com.example.tourbooking.repository.TourRepository;
 
 import java.text.SimpleDateFormat;
@@ -27,11 +30,13 @@ public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.Or
     private Context context;
     private List<Order> orderList;
     private List<Tour> tourList;
+    private ActivityResultLauncher<Intent> launcher;
     
     
-    public AdminOrderAdapter(Context context, List<Order> orderList) {
+    public AdminOrderAdapter(Context context, List<Order> orderList, ActivityResultLauncher<Intent> launcher) {
         this.context = context;
         this.orderList = orderList;
+        this.launcher = launcher;
     }
 
     @NonNull
@@ -49,17 +54,16 @@ public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.Or
 
         // Hiển thị dữ liệu trong ViewHolder
         holder.nameTour.setText("Tour: " + tour.getTile());
-        holder.statusTour.setText("Status: " + (order.getStatusId() == 1 ? "Completed" : "Pending"));
-        holder.priceTour.setText("Price: " + order.getTotalFee());
+        holder.statusTour.setText(Status.StatusEnum.getStatusNameById(order.getStatusId()));
+        holder.priceTour.setText("Price: " + FormatUtils.formatCurrency(order.getTotalFee()));
         Glide.with(context)
                 .load(tour.getImage())
                 .error(R.drawable.placeholder)
                 .into(holder.imgTour);
-
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-        String departureDayString = sdf.format(order.getDepartureDay());
-        String endDayString = sdf.format(order.getEndDate());
-        String orderDay = sdf.format(order.getOrderDate());
+        
+        String departureDayString = FormatUtils.formatDate(order.getDepartureDay());
+        String endDayString = FormatUtils.formatDate(order.getEndDate());
+        String orderDay = FormatUtils.formatDate(order.getOrderDate());
 
 
         holder.btnOrderDetail.setOnClickListener(view -> {
@@ -73,7 +77,8 @@ public class AdminOrderAdapter extends RecyclerView.Adapter<AdminOrderAdapter.Or
             intent.putExtra("orderDay",orderDay);
             intent.putExtra("departDay", departureDayString);
             intent.putExtra("endDay", endDayString);
-            context.startActivity(intent);
+//            context.startActivity(intent);
+            launcher.launch(intent);
         });
     }
 

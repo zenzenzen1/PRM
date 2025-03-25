@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.tourbooking.Entity.Order;
+import com.example.tourbooking.Entity.Status;
 import com.example.tourbooking.Entity.Tour;
 import com.example.tourbooking.Entity.User;
 import com.example.tourbooking.OrderTour.OrderDetailActivity;
@@ -52,7 +53,7 @@ public class OrderAdapter extends RecyclerView.Adapter<OrderAdapter.OrderViewHol
 
         // Hiển thị dữ liệu trong ViewHolder
         holder.nameTour.setText("" + tour.getTile());
-        holder.statusTour.setText("Status: " + (order.getStatusId() == 1 ? "Completed" : "Pending"));
+        holder.statusTour.setText("Status: " + Status.StatusEnum.getStatusNameById(order.getStatusId()));
         holder.priceTour.setText("Price: " + order.getTotalFee());
         Glide.with(context)
                 .load(tour.getImage())

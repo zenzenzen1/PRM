@@ -114,7 +114,11 @@
 			android:name=".admin.HomePageAdminActivity"
 			android:exported="true"
 			>
-			
+			<intent-filter>
+				<action android:name="android.intent.action.MAIN" />
+				
+				<category android:name="android.intent.category.LAUNCHER" />
+			</intent-filter>
 		</activity>
 		<activity
 			android:name=".SignUp"
@@ -143,11 +147,7 @@
 			android:name=".user.HomeActivity"
 			android:exported="true"
 			>
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-				
-				<category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
+			
 		</activity>
 		<activity
 			android:name=".user.TourDetailActivity"

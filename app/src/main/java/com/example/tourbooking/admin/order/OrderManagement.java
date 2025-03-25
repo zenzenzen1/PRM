@@ -2,6 +2,8 @@ package com.example.tourbooking.admin.order;// ListOrder.java
 
 import static com.example.tourbooking.R.layout.activity_order_management;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -12,6 +14,8 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -38,10 +42,15 @@ public class OrderManagement extends AppCompatActivity {
     StatusAdapter statusAdapter;
     Toolbar toolbar;
     Spinner spinner;
+    private ActivityResultLauncher<Intent> launcher;
+    Status selectedStatus;
+    public static final String RESULT_KEY = "result_key";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(activity_order_management);
+        
+        
         orderRepository = new OrderRepository(this);
         statusRepository = new StatusRepository(this);
         toolbar = findViewById(R.id.main_toolbar);
@@ -49,6 +58,7 @@ public class OrderManagement extends AppCompatActivity {
         spinner = findViewById(R.id.spinner);
         List<Status> items = new ArrayList<>();
         items.add(new Status(-1, "All Status", "All Status"));
+        selectedStatus = items.get(0);
         items.addAll(statusRepository.getAllStatus());
         
         // Create Adapter
@@ -57,7 +67,7 @@ public class OrderManagement extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                Status selectedStatus = (Status) parent.getItemAtPosition(position);
+                selectedStatus = (Status) parent.getItemAtPosition(position);
                 orderList.clear();
                 orderList.addAll(selectedStatus.getId() == ALL_STATUS_ID ? orderRepository.getAllOrder() : orderRepository.getOrdersByStatusId(selectedStatus.getId()));
                 orderAdapter.notifyDataSetChanged();
@@ -68,6 +78,22 @@ public class OrderManagement extends AppCompatActivity {
                 toolbar.setTitle("Select an Option");
             }
         });
+
+        launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK) {
+                        orderList.clear();
+                        orderList.addAll(selectedStatus.getId() == ALL_STATUS_ID ? orderRepository.getAllOrder() : orderRepository.getOrdersByStatusId(selectedStatus.getId()));
+                        orderAdapter.notifyDataSetChanged();
+//                        Intent data = result.getData();
+//                        if (data != null) {
+//                            boolean returnedValue = data.getBooleanExtra(RESULT_KEY, false);
+//                            if(returnedValue) {
+//                                
+//                            }
+//                        }
+                    }
+                });
         
         recyclerView = findViewById(R.id.admin_tour_recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -75,8 +101,11 @@ public class OrderManagement extends AppCompatActivity {
         
         orderList = orderRepository.getAllOrder();
 
-        orderAdapter = new AdminOrderAdapter(this, orderList);
+        orderAdapter = new AdminOrderAdapter(this, orderList, launcher);
         recyclerView.setAdapter(orderAdapter);
+
+        
+        
         Button back = findViewById(R.id.btn_admin_backtohome);
         back.setOnClickListener(v -> {
             finish();

@@ -15,13 +15,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.bumptech.glide.Glide;
 import com.example.tourbooking.Entity.Order;
 import com.example.tourbooking.Entity.Status;
+import com.example.tourbooking.Entity.Vote;
 import com.example.tourbooking.R;
 import com.example.tourbooking.repository.OrderRepository;
 import com.example.tourbooking.repository.TourRepository;
+import com.example.tourbooking.repository.VoteRepository;
 
 public class OrderDetailActivity extends AppCompatActivity {
 
     private OrderRepository orderRepository;
+    private VoteRepository voteRepository;
     private Order order;
     private TourRepository tourRepository;
 
@@ -29,8 +32,9 @@ public class OrderDetailActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_order_detail);
-
+        voteRepository = new VoteRepository(this);
         tourRepository = new TourRepository(this);
+        orderRepository = new OrderRepository(this);
         EditText edtVote = findViewById(R.id.edt_vote);
         Button btnVote = findViewById(R.id.btn_vote);
 
@@ -42,9 +46,12 @@ public class OrderDetailActivity extends AppCompatActivity {
         String userName = intent.getStringExtra("userName");
         String image = intent.getStringExtra("image");
         // Xử lý lấy thông tin chi tiết của order từ orderId
-        orderRepository = new OrderRepository(this);
         order = orderRepository.getOrder(orderId);
 
+        Vote vote = voteRepository.getVoteByUserIdTourId(order.getUserId(), order.getTourId());
+        if(vote != null){
+            edtVote.setText(vote.getVotedNumber() + "");
+        }
 
         TextView tourNameTextView = findViewById(R.id.textview_tourname_detail);
         tourNameTextView.setText(tourName);
@@ -56,7 +63,7 @@ public class OrderDetailActivity extends AppCompatActivity {
         TextView fee = findViewById(R.id.textview_TotalFee);
         fee.setText("Total fee: " + String.valueOf(order.getTotalFee()));
         TextView status = findViewById(R.id.textview_Status);
-        status.setText(Status.StatusEnum.GetStatusNameById(order.getStatusId()));
+        status.setText(Status.StatusEnum.getStatusNameById(order.getStatusId()));
         TextView userNamee = findViewById(R.id.textView_UserName);
         userNamee.setText(userName);
         TextView numPer = findViewById(R.id.textView_NumPer);
@@ -76,27 +83,25 @@ public class OrderDetailActivity extends AppCompatActivity {
 //            Intent intent1 = new Intent(OrderDetailActivity.this, ListOrder.class);
 //            startActivity(intent1);
         });
-        btnVote.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String voteInput = edtVote.getText().toString().trim();
-                if (!voteInput.isEmpty()) {
-                    int voteValue = Integer.parseInt(voteInput);
-                    if (voteValue >= 0 && voteValue <= 5) { // Assuming vote range
-                        // Update Tour voteNumber and voteScore
-                        boolean updateSuccess = tourRepository.updateTourVote(tourIdd, voteValue);
-                        if (updateSuccess) {
-                            Toast.makeText(OrderDetailActivity.this, "Vote updated successfully", Toast.LENGTH_SHORT).show();
-                            // Optionally update UI or navigate back
-                        } else {
-                            Toast.makeText(OrderDetailActivity.this, "Failed to update vote", Toast.LENGTH_SHORT).show();
-                        }
+        btnVote.setOnClickListener(v -> {
+            String voteInput = edtVote.getText().toString().trim();
+            if (!voteInput.isEmpty()) {
+                int voteValue = Integer.parseInt(voteInput);
+                if (voteValue >= 0 && voteValue <= 5) { // Assuming vote range
+                    // Update Tour voteNumber and voteScore
+                    boolean updateSuccess = tourRepository.updateTourVote(order.getUserId(), tourIdd, voteValue);
+                    if (updateSuccess) {
+                        
+                        Toast.makeText(OrderDetailActivity.this, "Vote updated successfully", Toast.LENGTH_SHORT).show();
+                        // Optionally update UI or navigate back
                     } else {
-                        Toast.makeText(OrderDetailActivity.this, "Vote value must be between 0 and 5", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(OrderDetailActivity.this, "Failed to update vote", Toast.LENGTH_SHORT).show();
                     }
                 } else {
-                    Toast.makeText(OrderDetailActivity.this, "Please enter a vote value", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OrderDetailActivity.this, "Vote value must be between 0 and 5", Toast.LENGTH_SHORT).show();
                 }
+            } else {
+                Toast.makeText(OrderDetailActivity.this, "Please enter a vote value", Toast.LENGTH_SHORT).show();
             }
         });
     }
